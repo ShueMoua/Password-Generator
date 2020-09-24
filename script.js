@@ -11,52 +11,87 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
-function writePassword() {
+
+
+function Password() {
     // Prompts the user to choose the length of his password
     var charlength = prompt("Choose a length for your password between 8 and 128 characters:");
 
-    console.log(charlength);
+    // User will have to reselect a value if it isn't between 8 - 128
+    while (charlength < 8 || charlength > 128) {
+        alert("Error: Please select a length for your password between 8 and 128 charcters.");
+
+        var charlength = prompt("Choose a length for your password between 8 and 128 characters:");
+    }
+
 
     alert("You want your password to be " + charlength + " characters.")
 
-    // Confirms if the user wants uppercase characters
-    var charupper = confirm("Do you want uppercase characters included in your password?")
+    console.log(charlength);
 
-    console.log(charupper)
+    // Do while loop, so user will have to select at least 1 character option
+    do {
+        // Confirms if the user wants lowercase characters
+        var charlower = confirm("Do you want lowercase characters included in your password?");
 
-    // Notifies the user of the option he choose
-    if (charupper) {
-        alert("You want to include uppercase characters in your password.");
+        console.log(charlower);
 
-    } else {
-        alert("You do not want to include uppercase characters in your password.");
+        // Notifies the user of the option he choose
+        if (charlower) {
+            alert("You want to include lowercase characters in your password.");
+
+        } else {
+            alert("You do not want to include lowercase characters in your password.");
+        }
+
+        // Confirms if the user wants uppercase characters
+        var charupper = confirm("Do you want uppercase characters included in your password?");
+
+        console.log(charupper);
+
+        // Notifies the user of the option he choose
+        if (charupper) {
+            alert("You want to include uppercase characters in your password.");
+
+        } else {
+            alert("You do not want to include uppercase characters in your password.");
+        }
+
+        // Confirms if the user wants numbers
+        var charnum = confirm("Do you want numbers included in your password?");
+
+        console.log(charnum);
+
+        // Notifies the user of the option he choose
+        if (charnum) {
+            alert("You want to include numbers in your password.");
+
+        } else {
+            alert("You do not want to include numbers in your password.");
+        }
+
+        // Confirms if the user wants special characters
+        var charspec = confirm("Do you want special characters included in your password?");
+
+        console.log(charspec);
+
+        // Notifies the user of the option he choose
+        if (charspec) {
+            alert("You want to include special characters in your password.");
+
+        } else {
+            alert("You do not want to include special characters in your password.");
+        }
+        // If statement to notify user that they have to select at least 1 character option.
+        if (charlower === false && charupper === false && charnum === false && charspec === false) {
+            alert("Error: Please select at least 1 character option.")
+        }
     }
 
-    // Confirms if the user wants numbers
-    var charnum = confirm("Do you want numbers included in your password?")
+    while (charlower === false && charupper === false && charnum === false && charspec === false);
 
-    console.log(charnum)
-
-    // Notifies the user of the option he choose
-    if (charnum) {
-        alert("You want to include numbers in your password.");
-
-    } else {
-        alert("You do not want to include numbers in your password.");
-    }
-
-    // Confirms if the user wants special characters
-    var charspec = confirm("Do you want special characters included in your password?")
-
-    console.log(charspec)
-
-    // Notifies the user of the option he choose
-    if (charspec) {
-        alert("You want to include special characters in your password.");
-
-    } else {
-        alert("You do not want to include special characters in your password.");
-    }
 }
+generateBtn.addEventListener("click", Password);
+
+
