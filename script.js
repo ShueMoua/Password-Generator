@@ -1,20 +1,25 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var lowabcs = "abcdefghijklmnopqrstuvwxyz";
+var upabcs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var nums = "0123456789";
+var spec = "!@#$%^&*()";
+
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
 
-    //   passwordText.value = password;
+      passwordText.value = password;
 
 }
 
 // Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 
-
-function Password() {
+function generatePassword() {
     // Prompts the user to choose the length of his password
     var charlength = prompt("Choose a length for your password between 8 and 128 characters:");
 
@@ -25,7 +30,7 @@ function Password() {
         var charlength = prompt("Choose a length for your password between 8 and 128 characters:");
     }
 
-
+    // Notifies the user if how long their password will be
     alert("You want your password to be " + charlength + " characters.")
 
     console.log(charlength);
@@ -83,15 +88,34 @@ function Password() {
         } else {
             alert("You do not want to include special characters in your password.");
         }
-        // If statement to notify user that they have to select at least 1 character option.
+        // If statement to notify user that they have to select at least 1 character option
         if (charlower === false && charupper === false && charnum === false && charspec === false) {
             alert("Error: Please select at least 1 character option.")
         }
     }
-
+    // If user doesn't select at least 1 character option, it will loop them back to choose at least 1 option
     while (charlower === false && charupper === false && charnum === false && charspec === false);
 
-}
-generateBtn.addEventListener("click", Password);
-
-
+    var panda = "";
+    // Let's the random code know characters to add to the password 
+    if (charlower === true) {
+      panda += lowabcs;
+    }
+    if (charupper === true) {
+      panda += upabcs;
+    }
+    if (charnum === true) {
+      panda += nums;
+    }
+    if (charspec === true) {
+      panda += spec;
+    }
+    // Code to let the computer know how long the user wants the password, and which characters the user wants
+    var password = "";
+    for (i = 0; i < charlength; i++) {
+      var random = Math.floor(Math.random() * panda.length);
+      password += panda[random];
+    }
+    return password
+    
+  }
